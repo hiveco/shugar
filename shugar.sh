@@ -2,5 +2,5 @@
 
 import()
 {
-	echo eval "source <(curl -s https://raw.githubusercontent.com/hiveco/shugar/master/$1.sh)"
+	echo eval "source <(curl -sL https://raw.github.com/hiveco/shugar/master/$1.sh)"
 }
