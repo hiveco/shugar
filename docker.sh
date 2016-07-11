@@ -1,11 +1,11 @@
 
 docker_sudo_required=0
-[ docker version >/dev/null 2>&1 ] || ( docker_sudo_required=1 )
+docker version >/dev/null 2>&1 || let docker_sudo_required=1
 
 docker.invoke()
 {
 	local docker_cmd="docker"
-	[ $docker_sudo_required -eq 0 ] || ( docker_cmd="sudo docker" )
+	[ $docker_sudo_required -eq 0 ] || docker_cmd="sudo docker"
 	cmd="$docker_cmd $@"
 	$cmd
 }
