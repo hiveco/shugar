@@ -23,7 +23,7 @@ cloudatcost.api() # operation params
     local url="https://panel.cloudatcost.com/api/v1/$operation.php?login=$cloudatcost_login&key=$cloudatcost_key&$params"
     [ $cloudatcost_verbose -eq 0 ] || echo >&2 "cloudatcost.api('$operation', '$params'): Generated URL '$url'"
 
-    local response=$(curl --silent --insecure "$url")
+    local response=$(curl --silent --insecure -X POST "$url")
     local status=$(echo "$response" | jq .status | sed "s/\"//g")
 
     if [ "$status" != "ok" ]; then
