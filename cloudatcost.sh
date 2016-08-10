@@ -1,6 +1,7 @@
 
 cloudatcost_login=""
 cloudatcost_key=""
+cloudatcost_verbose=0
 
 cloudatcost.auth() # login key
 {
@@ -20,7 +21,7 @@ cloudatcost.api() # operation params
 
     local quotes="'\""
     local url="https://panel.cloudatcost.com/api/v1/$operation.php?login=$cloudatcost_login&key=$cloudatcost_key&$params"
-    #echo >&2 $url
+    [ $cloudatcost_verbose -eq 0 ] || echo >&2 "cloudatcost.api('$operation', '$params'): Generated URL '$url'"
 
     local response=$(curl --silent --insecure "$url")
     local status=$(echo "$response" | jq .status | sed "s/\"//g")
@@ -38,4 +39,12 @@ cloudatcost.api() # operation params
 cloudatcost.list_servers()
 {
     cloudatcost.api listservers
+}
+
+cloudatcost.power_operation() # server_id poweron|poweroff|reset
+{
+    local server_id="$1"
+    local operation="$2"
+
+    cloudatcost.api powerop "sid=$server_id&action=$operation"
 }
