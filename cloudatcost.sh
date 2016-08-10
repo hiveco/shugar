@@ -20,10 +20,11 @@ cloudatcost.api() # operation params
     fi
 
     local quotes="'\""
-    local url="https://panel.cloudatcost.com/api/v1/$operation.php?login=$cloudatcost_login&key=$cloudatcost_key&$params"
-    [ $cloudatcost_verbose -eq 0 ] || echo >&2 "cloudatcost.api('$operation', '$params'): Generated URL '$url'"
+    local url="https://panel.cloudatcost.com/api/v1/$operation.php"
+    local data="key=$cloudatcost_key&login=$cloudatcost_login&$params"
+    [ $cloudatcost_verbose -eq 0 ] || echo >&2 "cloudatcost.api('$operation', '$params'): Generated URL '$url' and data '$data'"
 
-    local response=$(curl --silent --insecure -X POST "$url")
+    local response=$(curl --silent --insecure --data "$data" "$url")
     local status=$(echo "$response" | jq .status | sed "s/\"//g")
 
     if [ "$status" != "ok" ]; then
