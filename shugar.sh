@@ -6,9 +6,9 @@ read_module() # module
     local_file="$SHUGAR_CACHE/$1.sh"
 
     if [ -z "$SHUGAR_CACHE" ]; then
-        curl -sL "$remote_file"
+        wget -q -O - "$remote_file"
     else
-        [ -f "$local_file" ] || ( mkdir -p "$SHUGAR_CACHE"; curl -sL "$remote_file" > "$local_file" )
+        [ -f "$local_file" ] || ( mkdir -p "$SHUGAR_CACHE"; wget -q -O - "$remote_file" > "$local_file" )
         cat "$local_file"
     fi
 }
