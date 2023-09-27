@@ -9,7 +9,7 @@
 #           This directory is user-defined and will be created if it doesn't exist.
 # SHUGAR_CACHE=/opt/shugar
 
-. <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.sh)
+. <(wget -q -O - https://raw.github.com/hiveco/shugar/master/shugar.sh)
 
 `import <module>`
 ```
@@ -29,7 +29,7 @@ ENV \
     SHUGAR_BIN=/usr/local/bin
 
 RUN \
-    . <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.sh); \
+    . <(wget -q -O - https://raw.github.com/hiveco/shugar/master/shugar.sh); \
     install_shugar_bin \
         <module> \
         <module> \
@@ -57,7 +57,7 @@ retry
 ```
 #!/bin/bash
 
-. <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.bash)
+. <(wget -q -O - https://raw.github.com/hiveco/shugar/master/shugar.bash)
 
 `import <module>`
 ```
