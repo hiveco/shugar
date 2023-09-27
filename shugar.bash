@@ -2,7 +2,7 @@
 
 import()
 {
-    local remote_file="https://raw.github.com/hiveco/shugar/master/$1.bash"
+    local remote_file="https://raw.githubusercontent.com/hiveco/shugar/master/$1.bash"
     local local_file="$SHUGAR_CACHE/$1.bash"
 
     if [ -z ${SHUGAR_CACHE+x} ]; then

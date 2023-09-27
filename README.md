@@ -29,7 +29,7 @@ ENV \
     SHUGAR_BIN=/usr/local/bin
 
 RUN \
-    . <(wget -q -O - https://raw.github.com/hiveco/shugar/master/shugar.sh); \
+    . <(wget -q -O - https://raw.githubusercontent.com/hiveco/shugar/master/shugar.sh); \
     install_shugar_bin \
         <module> \
         <module> \
@@ -57,7 +57,7 @@ retry
 ```
 #!/bin/bash
 
-. <(wget -q -O - https://raw.github.com/hiveco/shugar/master/shugar.bash)
+. <(wget -q -O - https://raw.githubusercontent.com/hiveco/shugar/master/shugar.bash)
 
 `import <module>`
 ```

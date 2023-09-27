@@ -2,7 +2,7 @@
 
 read_module() # module
 {
-    remote_file="https://raw.github.com/hiveco/shugar/master/$1.sh"
+    remote_file="https://raw.githubusercontent.com/hiveco/shugar/master/$1.sh"
     local_file="$SHUGAR_CACHE/$1.sh"
 
     if [ -z "$SHUGAR_CACHE" ]; then
