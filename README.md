@@ -1,24 +1,17 @@
 # Shugar
 
-## Quick Start
+## Quick Start - Unix Shell
 
 ```
-#!/bin/bash
+#!/bin/sh
+
+# Optional: Cache all imported modules locally, allowing quicker offline imports in the future.
+#           This directory is user-defined and will be created if it doesn't exist.
+# SHUGAR_CACHE=/opt/shugar
 
 . <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.sh)
 
 `import <module>`
-```
-
-## Using a Local Cache
-
-Note: The examples below assume the shugar cache will be located at `/opt/shugar`, but it can be anywhere.
-
-To use a local cache of shugar modules for faster execution:
-
-```
-SHUGAR_CACHE=/opt/shugar
-. <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.sh)
 ```
 
 To use a clone of the shugar repo without requiring Internet connection:
@@ -26,4 +19,45 @@ To use a clone of the shugar repo without requiring Internet connection:
 ```
 SHUGAR_CACHE=/opt/shugar
 . "$SHUGAR_CACHE/shugar.sh"
+```
+
+In a Dockerfile:
+
+```
+ENV \
+    SHUGAR_CACHE=/opt/shugar \
+    SHUGAR_BIN=/usr/local/bin
+
+RUN \
+    . <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.sh); \
+    install_shugar_bin \
+        <module> \
+        <module> \
+        <module>
+
+RUN <module> <args>
+```
+
+If you want to use a `SHUGAR_BIN` directory that's not already on the $PATH (recommended in order to
+avoid name conflicts), you would need to also update the $PATH environment variable in your
+Dockerfile.
+
+## Installable Modules
+
+```
+retry
+```
+
+## Legacy: Bash Shell Usage
+
+> Note: Bash variants of modules are considered legacy since they limit Shugar's usefulness
+>       to only environments where Bash is available (most notably, excluding Alpine docker
+>       images).
+
+```
+#!/bin/bash
+
+. <(curl -sL https://raw.github.com/hiveco/shugar/master/shugar.bash)
+
+`import <module>`
 ```
