@@ -35,5 +35,6 @@ $module_data
 
 $module_name \$@
 EOF
+        chmod +x "$local_file"
     done
 }
